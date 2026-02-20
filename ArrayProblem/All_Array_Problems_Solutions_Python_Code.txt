@@ -1,0 +1,170 @@
+ARRAY PROBLEMS
+
+1. Reverse an Array
+
+def reverse_array(arr): return arr[::-1]
+
+2. Find Maximum & Minimum Element
+
+def find_max_min(arr): return max(arr), min(arr)
+
+3. Find the Sum of Elements
+
+def array_sum(arr): return sum(arr)
+
+4. Find the Second Largest Element
+
+def second_largest(arr): first = second = float(‘-inf’) for num in arr:
+if num > first: second = first first = num elif first > num > second:
+second = num return second
+
+5. Count Frequency of Elements
+
+def frequency(arr): freq = {} for num in arr: freq[num] = freq.get(num,
+0) + 1 return freq
+
+6. Check if Array is Sorted
+
+def is_sorted(arr): return all(arr[i] <= arr[i + 1] for i in
+range(len(arr) - 1))
+
+7. Rotate Array by k Positions (Right)
+
+def rotate_right(arr, k): if not arr: return arr k %= len(arr) return
+arr[-k:] + arr[:-k]
+
+8. Find Pair with Given Sum
+
+def pair_with_sum(arr, target): seen = set() for num in arr: if target -
+num in seen: return (num, target - num) seen.add(num) return None
+
+9. Remove Duplicates (Maintain Order)
+
+def remove_duplicates(arr): seen = set() result = [] for num in arr: if
+num not in seen: seen.add(num) result.append(num) return result
+
+10. Merge Two Sorted Arrays
+
+def merge_sorted(a, b): return sorted(a + b)
+
+11. Remove Given Element
+
+def remove_element(arr, val): return [x for x in arr if x != val]
+
+12. Find the Missing Number (1 to n)
+
+def missing_number(arr, n): return n * (n + 1) // 2 - sum(arr)
+
+13. Find Duplicates
+
+def find_duplicates(arr): seen = set() dup = set() for num in arr: if
+num in seen: dup.add(num) seen.add(num) return list(dup)
+
+14. Intersection of Two Arrays
+
+def intersection(a, b): return list(set(a) & set(b))
+
+15. Union of Two Arrays
+
+def union(a, b): return list(set(a) | set(b))
+
+16. Check if Two Arrays Are Equal
+
+def arrays_equal(a, b): return sorted(a) == sorted(b)
+
+17. Find Leader Elements
+
+def leaders(arr): if not arr: return [] max_right = arr[-1] result =
+[max_right] for i in range(len(arr) - 2, -1, -1): if arr[i] > max_right:
+max_right = arr[i] result.append(max_right) return result[::-1]
+
+18. Move Zeroes to End
+
+def move_zeroes(arr): non_zero = [x for x in arr if x != 0] zeros =
+[0] * (len(arr) - len(non_zero)) return non_zero + zeros
+
+19. Subarray with Given Sum (Positive Numbers Only)
+
+def subarray_sum(arr, target): curr_sum = 0 start = 0 for end in
+range(len(arr)): curr_sum += arr[end] while curr_sum > target and start
+<= end: curr_sum -= arr[start] start += 1 if curr_sum == target: return
+arr[start:end + 1] return None
+
+20. Rotate Array Left by k
+
+def rotate_left(arr, k): if not arr: return arr k %= len(arr) return
+arr[k:] + arr[:k]
+
+21. Kth Smallest Element
+
+def kth_smallest(arr, k): return sorted(arr)[k - 1]
+
+22. Find All Subarrays
+
+def all_subarrays(arr): result = [] for i in range(len(arr)): for j in
+range(i, len(arr)): result.append(arr[i:j + 1]) return result
+
+23. Maximum Sum Subarray (Kadane’s Algorithm)
+
+def max_subarray(arr): max_sum = curr = arr[0] for num in arr[1:]: curr
+= max(num, curr + num) max_sum = max(max_sum, curr) return max_sum
+
+24. Rearrange Alternately (Largest, Smallest)
+
+def rearrange_alternate(arr): arr = sorted(arr) result = [] i, j = 0,
+len(arr) - 1 while i <= j: if i != j: result.extend([arr[j], arr[i]])
+else: result.append(arr[i]) i += 1 j -= 1 return result
+
+25. Majority Element (> n/2 times)
+
+def majority_element(arr): count = 0 candidate = None for num in arr: if
+count == 0: candidate = num count += 1 if num == candidate else -1
+return candidate
+
+26. Find Peak Element
+
+def find_peak(arr): for i in range(len(arr)): if ((i == 0 or arr[i] >=
+arr[i - 1]) and (i == len(arr) - 1 or arr[i] >= arr[i + 1])): return
+arr[i] return None
+
+27. First Missing Positive
+
+def first_missing_positive(arr): s = set(arr) i = 1 while True: if i not
+in s: return i i += 1
+
+28. Sort 0s, 1s, 2s (Dutch National Flag Algorithm)
+
+def sort_012(arr): low = mid = 0 high = len(arr) - 1 while mid <= high:
+if arr[mid] == 0: arr[low], arr[mid] = arr[mid], arr[low] low += 1 mid
++= 1 elif arr[mid] == 1: mid += 1 else: arr[mid], arr[high] = arr[high],
+arr[mid] high -= 1 return arr
+
+29. Longest Consecutive Sequence
+
+def longest_consecutive(arr): s = set(arr) longest = 0 for num in s: if
+num - 1 not in s: length = 1 while num + length in s: length += 1
+longest = max(longest, length) return longest
+
+30. Product of Array Except Self (Without Division)
+
+def product_except_self(arr): n = len(arr) left = [1] * n right = [1] *
+n for i in range(1, n): left[i] = left[i - 1] * arr[i - 1] for i in
+range(n - 2, -1, -1): right[i] = right[i + 1] * arr[i + 1] return
+[left[i] * right[i] for i in range(n)]
+
+31. Equilibrium Index
+
+def equilibrium_index(arr): total = sum(arr) left_sum = 0 for i in
+range(len(arr)): total -= arr[i] if left_sum == total: return i left_sum
++= arr[i] return -1
+
+32. Maximum Product Pair
+
+def max_product_pair(arr): arr = sorted(arr) return max(arr[0] * arr[1],
+arr[-1] * arr[-2])
+
+33. Maximum Difference (j > i)
+
+def max_difference(arr): min_val = arr[0] max_diff = float(‘-inf’) for i
+in range(1, len(arr)): max_diff = max(max_diff, arr[i] - min_val)
+min_val = min(min_val, arr[i]) return max_diff
